@@ -16,8 +16,6 @@ def load_selected_model():
     return load_model("dogs_vs_cats_model.keras")
 
 model = load_selected_model()
-
-st.markdown("### 📂 Drag & Drop or Browse to Upload Your Image")
 uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
 
 
@@ -25,7 +23,7 @@ if uploaded_file is not None:
     img = Image.open(uploaded_file).convert("RGB")
     st.image(img, caption="Uploaded Image", use_column_width=True)
     
-    img_resized = img.resize((150, 150))
+    img_resized = img.resize((256, 256))
     img_array = image.img_to_array(img_resized) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
